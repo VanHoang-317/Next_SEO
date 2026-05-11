@@ -1,6 +1,6 @@
 import ProductSchema from "@/component/ProductSchema";
 import { getProductById } from "@/lib/db";
-import { ogImageUrl, siteUrl } from "@/lib/site";
+import { siteUrl } from "@/lib/site";
 import { notFound } from "next/navigation";
 
 const baseUrl = siteUrl;
@@ -14,6 +14,7 @@ export async function generateMetadata({ params }: PageProps<"/products/[id]">) 
   }
 
   const keywordTags = product.tags.map((tag) => tag.toLowerCase());
+  const productOgImage = `${baseUrl}/products/${product.id}/opengraph-image`;
 
   return {
     title: `${product.name} đẹp`,
@@ -34,7 +35,7 @@ export async function generateMetadata({ params }: PageProps<"/products/[id]">) 
       siteName: "Tiệm Hoa Vũng Tàu",
       images: [
         {
-          url: ogImageUrl,
+          url: productOgImage,
           width: 1200,
           height: 630,
           alt: product.name,
