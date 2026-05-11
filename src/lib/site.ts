@@ -1,5 +1,2 @@
-export const siteUrl =
-  process.env.NEXT_PUBLIC_APP_URL ??
-  (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "http://localhost:3000");
-
-export const ogImageUrl = `${siteUrl}/hoa.jpg`;
+export const siteUrl = "https://next-seo-i6si.vercel.app";
+export const ogImageUrl = "https://next-seo-i6si.vercel.app/hoa.jpg?v=2";

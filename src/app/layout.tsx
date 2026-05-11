@@ -28,6 +28,7 @@ export const metadata: Metadata = {
         url: ogImageUrl,
         width: 1200,
         height: 630,
+        type: "image/jpeg",
         alt: "Tiệm Hoa Vũng Tàu",
       },
     ],
@@ -39,6 +40,13 @@ export const metadata: Metadata = {
   },
   alternates: {
     canonical: baseUrl,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Hoa Tươi 24/7 Giao Nhanh Tại Vũng Tàu | Tiệm Hoa Vũng Tàu",
+    description:
+      "Chuyên thiết kế hoa sinh nhật, khai trương, Valentine sang trọng. Cam kết hoa tươi mới mỗi ngày, giá tốt, giao nhanh tại Vũng Tàu.",
+    images: [ogImageUrl],
   },
   metadataBase: new URL(baseUrl),
 };

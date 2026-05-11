@@ -1,6 +1,6 @@
 import ProductSchema from "@/component/ProductSchema";
 import { getProductById } from "@/lib/db";
-import { siteUrl } from "@/lib/site";
+import { ogImageUrl, siteUrl } from "@/lib/site";
 import { notFound } from "next/navigation";
 
 const baseUrl = siteUrl;
@@ -14,7 +14,6 @@ export async function generateMetadata({ params }: PageProps<"/products/[id]">) 
   }
 
   const keywordTags = product.tags.map((tag) => tag.toLowerCase());
-  const productOgImage = `${baseUrl}/products/${product.id}/opengraph-image`;
 
   return {
     title: `${product.name} đẹp`,
@@ -35,9 +34,10 @@ export async function generateMetadata({ params }: PageProps<"/products/[id]">) 
       siteName: "Tiệm Hoa Vũng Tàu",
       images: [
         {
-          url: productOgImage,
+          url: ogImageUrl,
           width: 1200,
           height: 630,
+          type: "image/jpeg",
           alt: product.name,
         },
       ],
@@ -50,6 +50,12 @@ export async function generateMetadata({ params }: PageProps<"/products/[id]">) 
 
     alternates: {
       canonical: `${baseUrl}/products/${product.id}`,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${product.name} đẹp`,
+      description: `${product.name} tại Tiệm Hoa Vũng Tàu, hoa tươi mới mỗi ngày, thiết kế chỉn chu và giao nhanh trong 2h tại Vũng Tàu.`,
+      images: [ogImageUrl],
     },
   };
 }
