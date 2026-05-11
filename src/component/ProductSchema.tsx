@@ -1,6 +1,7 @@
+import { ogImageUrl, siteUrl } from "@/lib/site";
 import { Product, WithContext } from "schema-dts";
 
-const baseUrl = process.env.NEXT_PUBLIC_APP_URL ?? "http://localhost:3000";
+const baseUrl = siteUrl;
 
 interface Props {
   name: string;
@@ -19,6 +20,7 @@ export default function ProductSchema({
     "@context": "https://schema.org",
     "@type": "Product",
     name: name,
+    image: ogImageUrl,
     description: description,
     brand: {
       "@type": "Brand",

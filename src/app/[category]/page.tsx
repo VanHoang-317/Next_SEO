@@ -1,10 +1,11 @@
 import ProductCard from "@/component/ProductCard";
 import { formatVietnameseDate } from "@/lib";
 import { getCategoryById, getProductsByCategory } from "@/lib/db";
+import { ogImageUrl, siteUrl } from "@/lib/site";
 import { notFound } from "next/navigation";
 
 // SEO
-const baseUrl = process.env.NEXT_PUBLIC_APP_URL ?? "http://localhost:3000";
+const baseUrl = siteUrl;
 
 export async function generateMetadata({ params }: PageProps<"/[category]">) {
   const { category: categoryId } = await params;
@@ -37,7 +38,7 @@ export async function generateMetadata({ params }: PageProps<"/[category]">) {
       siteName: "Tiệm Hoa Vũng Tàu",
       images: [
         {
-          url: "/hoa.jpg",
+          url: ogImageUrl,
           width: 1200,
           height: 630,
           alt: "Tiệm Hoa Vũng Tàu",

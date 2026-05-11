@@ -1,8 +1,9 @@
 import ProductSchema from "@/component/ProductSchema";
 import { getProductById } from "@/lib/db";
+import { ogImageUrl, siteUrl } from "@/lib/site";
 import { notFound } from "next/navigation";
 
-const baseUrl = process.env.NEXT_PUBLIC_APP_URL ?? "http://localhost:3000";
+const baseUrl = siteUrl;
 
 export async function generateMetadata({ params }: PageProps<"/products/[id]">) {
   const { id } = await params;
@@ -15,8 +16,8 @@ export async function generateMetadata({ params }: PageProps<"/products/[id]">) 
   const keywordTags = product.tags.map((tag) => tag.toLowerCase());
 
   return {
-    title: product.name,
-    description: `${product.name} được thiết kế bởi thợ cắm hoa chuyên nghiệp tại Tiệm Hoa Vũng Tàu. Cam kết hoa tươi mới mỗi ngày, giá tốt, giao nhanh hỏa tốc 2h tận nơi tại Vũng Tàu.`,
+    title: `${product.name} đẹp`,
+    description: `${product.name} tại Tiệm Hoa Vũng Tàu, hoa tươi mới mỗi ngày, thiết kế chỉn chu và giao nhanh trong 2h tại Vũng Tàu.`,
     keywords: [
       "hoa tươi Vũng Tàu",
       "shop hoa Vũng Tàu",
@@ -27,13 +28,13 @@ export async function generateMetadata({ params }: PageProps<"/products/[id]">) 
     ],
 
     openGraph: {
-      title: product.name,
-      description: `${product.name} được thiết kế bởi thợ cắm hoa chuyên nghiệp tại Tiệm Hoa Vũng Tàu. Cam kết hoa tươi mới mỗi ngày, giá tốt, giao nhanh hỏa tốc 2h tận nơi tại Vũng Tàu.`,
+      title: `${product.name} đẹp`,
+      description: `${product.name} tại Tiệm Hoa Vũng Tàu, hoa tươi mới mỗi ngày, thiết kế chỉn chu và giao nhanh trong 2h tại Vũng Tàu.`,
       url: `${baseUrl}/products/${product.id}`,
       siteName: "Tiệm Hoa Vũng Tàu",
       images: [
         {
-          url: "/hoa.jpg",
+          url: ogImageUrl,
           width: 1200,
           height: 630,
           alt: product.name,

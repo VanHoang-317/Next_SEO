@@ -1,11 +1,13 @@
-const baseUrl = process.env.NEXT_PUBLIC_APP_URL ?? "http://localhost:3000";
+import { ogImageUrl, siteUrl } from "@/lib/site";
+
+const baseUrl = siteUrl;
 
 export default function BusinessSchema() {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Florist",
     name: "Tiệm Hoa Vũng Tàu",
-    image: `${baseUrl}/hoa.jpg`,
+    image: ogImageUrl,
     url: baseUrl,
     telephone: "+84-987-894-56",
     address: {

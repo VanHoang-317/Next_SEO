@@ -2,8 +2,9 @@ import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import Link from "next/link";
 import BusinessSchema from "@/component/BusinessSchema";
+import { ogImageUrl, siteUrl } from "@/lib/site";
 
-const baseUrl = process.env.NEXT_PUBLIC_APP_URL ?? "http://localhost:3000";
+const baseUrl = siteUrl;
 
 export const metadata: Metadata = {
   title: {
@@ -24,7 +25,7 @@ export const metadata: Metadata = {
     siteName: "Tiệm Hoa Vũng Tàu",
     images: [
       {
-        url: "/hoa.jpg",
+        url: ogImageUrl,
         width: 1200,
         height: 630,
         alt: "Tiệm Hoa Vũng Tàu",

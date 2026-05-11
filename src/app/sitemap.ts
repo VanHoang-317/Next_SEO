@@ -1,7 +1,8 @@
 import { getCategories, getProducts } from "@/lib/db";
+import { siteUrl } from "@/lib/site";
 import { MetadataRoute } from "next";
 
-const baseUrl = process.env.NEXT_PUBLIC_APP_URL ?? "http://localhost:3000";
+const baseUrl = siteUrl;
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const categories = await getCategories();

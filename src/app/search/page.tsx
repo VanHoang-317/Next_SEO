@@ -1,8 +1,9 @@
 import ProductCard from "@/component/ProductCard";
 import { searchProducts } from "@/lib/db";
+import { ogImageUrl, siteUrl } from "@/lib/site";
 
 // SEO
-const baseUrl = process.env.NEXT_PUBLIC_APP_URL ?? "http://localhost:3000";
+const baseUrl = siteUrl;
 
 export async function generateMetadata({
   searchParams,
@@ -46,7 +47,7 @@ export async function generateMetadata({
       siteName: "Tiệm Hoa Vũng Tàu",
       images: [
         {
-          url: "/hoa.jpg",
+          url: ogImageUrl,
           width: 1200,
           height: 630,
           alt: `Top ${products.length} mẫu ${query} đẹp nhất tại Vũng Tàu`,
