@@ -2,6 +2,7 @@ import ProductSchema from "@/component/ProductSchema";
 import { getProductById } from "@/lib/db";
 import { ogImageUrl, siteUrl } from "@/lib/site";
 import { notFound } from "next/navigation";
+import Image from "next/image";
 
 const baseUrl = siteUrl;
 
@@ -85,10 +86,15 @@ export default async function ProductDetailPage({
 
       <div className="flex flex-col md:flex-row gap-10 mt-8">
         {/* Giả lập ảnh sản phẩm */}
-        <div className="w-full md:w-1/2 aspect-square bg-gray-100 rounded-2xl flex items-center justify-center text-gray-400">
-          Hình ảnh sản phẩm {product.id}
-        </div>
-
+       <div className="w-full md:w-1/2 aspect-square bg-gray-100 rounded-2xl overflow-hidden relative">
+  <Image
+    src="/hoa.jpg"
+    alt={product.name}
+    fill
+    className="object-cover"
+    priority
+  />
+</div>
         <div className="w-full md:w-1/2">
           <h1 className="text-4xl font-bold text-gray-800 mb-4">{product.name}</h1>
           <p className="text-2xl font-bold text-blue-600 mb-6">
