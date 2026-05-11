@@ -1,10 +1,12 @@
+const baseUrl = process.env.NEXT_PUBLIC_APP_URL ?? "http://localhost:3000";
+
 export default function BusinessSchema() {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Florist",
     name: "Tiệm Hoa Vũng Tàu",
-    image: "https://tiemhoavungtau.com/hoa.jpg",
-    url: "https://tiemhoavungtau.com",
+    image: `${baseUrl}/hoa.jpg`,
+    url: baseUrl,
     telephone: "+84-987-894-56",
     address: {
       "@type": "PostalAddress",

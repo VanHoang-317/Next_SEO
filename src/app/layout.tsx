@@ -3,7 +3,8 @@ import "./globals.css";
 import Link from "next/link";
 import BusinessSchema from "@/component/BusinessSchema";
 
-const baseUrl = process.env.NEXT_PUBLIC_APP_URL;
+const baseUrl = process.env.NEXT_PUBLIC_APP_URL ?? "http://localhost:3000";
+
 export const metadata: Metadata = {
   title: {
     template: "%s | Tiệm Hoa Vũng Tàu",
@@ -19,7 +20,7 @@ export const metadata: Metadata = {
     },
     description:
       "Chuyên thiết kế hoa sinh nhật, khai trương, Valentine sang trọng. Cam kết hoa tươi mới mỗi ngày, giá tốt, giao nhanh hỏa tốc 2h tận nơi tại Vũng Tàu.",
-    url: `${baseUrl}`,
+    url: baseUrl,
     siteName: "Tiệm Hoa Vũng Tàu",
     images: [
       {
@@ -36,9 +37,9 @@ export const metadata: Metadata = {
     countryName: "Việt Nam",
   },
   alternates: {
-    canonical: `${baseUrl}`,
+    canonical: baseUrl,
   },
-  metadataBase: new URL(`${baseUrl}`),
+  metadataBase: new URL(baseUrl),
 };
 
 export const viewport: Viewport = {

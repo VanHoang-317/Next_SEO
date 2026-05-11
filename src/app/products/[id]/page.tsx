@@ -2,7 +2,8 @@ import ProductSchema from "@/component/ProductSchema";
 import { getProductById } from "@/lib/db";
 import { notFound } from "next/navigation";
 
-const baseUrl = process.env.NEXT_PUBLIC_APP_URL;
+const baseUrl = process.env.NEXT_PUBLIC_APP_URL ?? "http://localhost:3000";
+
 export async function generateMetadata({ params }: PageProps<"/products/[id]">) {
   const { id } = await params;
   const product = await getProductById(id);

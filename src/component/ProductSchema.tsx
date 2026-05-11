@@ -1,5 +1,7 @@
 import { Product, WithContext } from "schema-dts";
 
+const baseUrl = process.env.NEXT_PUBLIC_APP_URL ?? "http://localhost:3000";
+
 interface Props {
   name: string;
   description?: string;
@@ -24,7 +26,7 @@ export default function ProductSchema({
     },
     offers: {
       "@type": "Offer",
-      url: `https://tiemhoavungtau.com/products/${productId}`,
+      url: `${baseUrl}/products/${productId}`,
       priceCurrency: "VND",
       price: price,
       availability: "https://schema.org/InStock",

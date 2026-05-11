@@ -2,7 +2,7 @@ import ProductCard from "@/component/ProductCard";
 import { searchProducts } from "@/lib/db";
 
 // SEO
-const baseUrl = process.env.NEXT_PUBLIC_APP_URL;
+const baseUrl = process.env.NEXT_PUBLIC_APP_URL ?? "http://localhost:3000";
 
 export async function generateMetadata({
   searchParams,
@@ -10,8 +10,9 @@ export async function generateMetadata({
   searchParams: Promise<{ q?: string }>;
 }) {
   const { q } = await searchParams;
+  const query = q?.trim();
 
-  if (!q) {
+  if (!query) {
     return {
       title: "Tìm kiếm hoa tươi tại Vũng Tàu",
       description: "Tìm kiếm nhanh các mẫu hoa tươi đẹp tại Tiệm Hoa Vũng Tàu",
@@ -22,33 +23,33 @@ export async function generateMetadata({
     };
   }
 
-  const products = await searchProducts(q);
+  const products = await searchProducts(query);
   const topProducts = products.slice(0, 10).map((p) => p.name.toLowerCase());
 
   return {
-    title: `Top ${products.length} mẫu ${q} đẹp nhất tại Vũng Tàu`,
-    description: `Top ${products.length} mẫu ${q} đẹp nhất tại Tiệm Hoa Vũng Tàu. Hoa tươi mỗi ngày, giao nhanh nội thành.`,
+    title: `Top ${products.length} mẫu ${query} đẹp nhất tại Vũng Tàu`,
+    description: `Top ${products.length} mẫu ${query} đẹp nhất tại Tiệm Hoa Vũng Tàu. Hoa tươi mỗi ngày, giao nhanh nội thành.`,
     keywords: [
       "hoa tươi Vũng Tàu",
       "shop hoa Vũng Tàu",
       "đặt hoa online",
-      `${q}`,
-      `mẫu ${q} đẹp`,
-      `mua ${q} tại Vũng Tàu`,
+      `${query}`,
+      `mẫu ${query} đẹp`,
+      `mua ${query} tại Vũng Tàu`,
       ...topProducts,
     ],
 
     openGraph: {
-      title: `Top ${products.length} mẫu ${q} đẹp nhất tại Vũng Tàu`,
-      description: `Khám phá các mẫu ${q} được yêu thích tại Tiệm Hoa Vũng Tàu. Hoa tươi mỗi ngày, giao nhanh nội thành.`,
-      url: `${baseUrl}/search?q=${encodeURIComponent(q)}`,
+      title: `Top ${products.length} mẫu ${query} đẹp nhất tại Vũng Tàu`,
+      description: `Khám phá các mẫu ${query} được yêu thích tại Tiệm Hoa Vũng Tàu. Hoa tươi mỗi ngày, giao nhanh nội thành.`,
+      url: `${baseUrl}/search?q=${encodeURIComponent(query)}`,
       siteName: "Tiệm Hoa Vũng Tàu",
       images: [
         {
           url: "/hoa.jpg",
           width: 1200,
           height: 630,
-          alt: `Top ${products.length} mẫu ${q} đẹp nhất tại Vũng Tàu`,
+          alt: `Top ${products.length} mẫu ${query} đẹp nhất tại Vũng Tàu`,
         },
       ],
       locale: "vi_VN",
@@ -59,7 +60,7 @@ export async function generateMetadata({
     },
 
     alternates: {
-      canonical: `${baseUrl}/search?q=${encodeURIComponent(q)}`,
+      canonical: `${baseUrl}/search?q=${encodeURIComponent(query)}`,
     },
 
     robots: {
@@ -72,16 +73,17 @@ export async function generateMetadata({
 export default async function SearchPage({
   searchParams,
 }: {
-  searchParams: Promise<{ q: string }>;
+  searchParams: Promise<{ q?: string }>;
 }) {
   const { q } = await searchParams;
-  const products = await searchProducts(q);
+  const query = q?.trim() ?? "";
+  const products = await searchProducts(query);
 
   return (
     <main className="category-container">
-      <h1 className="category-title">Kết quả cho: &quot;{q}&quot;</h1>
+      <h1 className="category-title">Kết quả cho: &quot;{query}&quot;</h1>
       <p className="category-description">
-        Top {products.length} sản phẩm {q} đẹp nhất dành cho bạn.
+        Top {products.length} sản phẩm {query} đẹp nhất dành cho bạn.
       </p>
 
       {products && products.length > 0 ? (
@@ -96,7 +98,7 @@ export default async function SearchPage({
       ) : (
         <p className="empty-message">
           Rất tiếc, chúng tôi không tìm thấy sản phẩm nào phù hợp với từ khóa &quot;
-          {q}&quot;.
+          {query}&quot;.
         </p>
       )}
     </main>
